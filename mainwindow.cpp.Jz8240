@@ -20,10 +20,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     QString tempCost = QLocale(QLocale::English).toString(hardware[0].cost, 'f', 0);
-    this->ui->hardwareCost_0->setText(QLocale(QLocale::English).toString(hardware[0].cost, 'f', 0));
+    this->ui->hardwareCost_0->setText(tempCost);
 
     tempCost = QLocale(QLocale::English).toString(hardware[1].cost, 'f', 0);
-    this->ui->hardwareCost_1->setText(QLocale(QLocale::English).toString(hardware[1].cost, 'f', 0));
+    this->ui->hardwareCost_1->setText(tempCost);
 
     tempCost = QLocale(QLocale::English).toString(hardware[2].cost, 'f', 0);
     this->ui->hardwareCost_2->setText(tempCost);
@@ -52,69 +52,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->upgradeNameCoffee_2   ->setWordWrap(true);
     this->ui->upgradeNameSmart_3    ->setWordWrap(true);
     this->ui->upgradeNameNote_3     ->setWordWrap(true);
-    this->ui->upgradeNameNote_5     ->setWordWrap(true);
+    this->ui->upgradeNameNote_3     ->setWordWrap(true);
     this->ui->upgradeNameCodeInc_2  ->setWordWrap(true);
     this->ui->upgradeNameCodeInc_5  ->setWordWrap(true);
-
-    this->ui->upgradeTextCoffee_1   ->setWordWrap(true);
-    this->ui->upgradeTextCoffee_2   ->setWordWrap(true);
-    this->ui->upgradeTextCoffee_3   ->setWordWrap(true);
-    this->ui->upgradeTextCoffee_4   ->setWordWrap(true);
-    this->ui->upgradeTextCoffee_5   ->setWordWrap(true);
-
-    this->ui->upgradeTextTama_1     ->setWordWrap(true);
-    this->ui->upgradeTextTama_2     ->setWordWrap(true);
-    this->ui->upgradeTextTama_3     ->setWordWrap(true);
-    this->ui->upgradeTextTama_4     ->setWordWrap(true);
-    this->ui->upgradeTextTama_5     ->setWordWrap(true);
-
-    this->ui->upgradeTextCalc_1     ->setWordWrap(true);
-    this->ui->upgradeTextCalc_2     ->setWordWrap(true);
-    this->ui->upgradeTextCalc_3     ->setWordWrap(true);
-    this->ui->upgradeTextCalc_4     ->setWordWrap(true);
-    this->ui->upgradeTextCalc_5     ->setWordWrap(true);
-
-    this->ui->upgradeTextArduino_1  ->setWordWrap(true);
-    this->ui->upgradeTextArduino_2  ->setWordWrap(true);
-    this->ui->upgradeTextArduino_3  ->setWordWrap(true);
-    this->ui->upgradeTextArduino_4  ->setWordWrap(true);
-    this->ui->upgradeTextArduino_5  ->setWordWrap(true);
-
-    this->ui->upgradeTextSmart_1    ->setWordWrap(true);
-    this->ui->upgradeTextSmart_2    ->setWordWrap(true);
-    this->ui->upgradeTextSmart_3    ->setWordWrap(true);
-    this->ui->upgradeTextSmart_4    ->setWordWrap(true);
-    this->ui->upgradeTextSmart_5    ->setWordWrap(true);
-
-    this->ui->upgradeTextTablet_1   ->setWordWrap(true);
-    this->ui->upgradeTextTablet_2   ->setWordWrap(true);
-    this->ui->upgradeTextTablet_3   ->setWordWrap(true);
-    this->ui->upgradeTextTablet_4   ->setWordWrap(true);
-    this->ui->upgradeTextTablet_5   ->setWordWrap(true);
-
-    this->ui->upgradeTextNote_1     ->setWordWrap(true);
-    this->ui->upgradeTextNote_2     ->setWordWrap(true);
-    this->ui->upgradeTextNote_3     ->setWordWrap(true);
-    this->ui->upgradeTextNote_4     ->setWordWrap(true);
-    this->ui->upgradeTextNote_5     ->setWordWrap(true);
-
-    this->ui->upgradeTextPc_1       ->setWordWrap(true);
-    this->ui->upgradeTextPc_2       ->setWordWrap(true);
-    this->ui->upgradeTextPc_3       ->setWordWrap(true);
-    this->ui->upgradeTextPc_4       ->setWordWrap(true);
-    this->ui->upgradeTextPc_5       ->setWordWrap(true);
-
-    this->ui->upgradeTextCodeInc_1  ->setWordWrap(true);
-    this->ui->upgradeTextCodeInc_2  ->setWordWrap(true);
-    this->ui->upgradeTextCodeInc_3  ->setWordWrap(true);
-    this->ui->upgradeTextCodeInc_4  ->setWordWrap(true);
-    this->ui->upgradeTextCodeInc_5  ->setWordWrap(true);
-
-    this->ui->upgradeTextNeuro_1    ->setWordWrap(true);
-    this->ui->upgradeTextNeuro_2    ->setWordWrap(true);
-    this->ui->upgradeTextNeuro_3    ->setWordWrap(true);
-    this->ui->upgradeTextNeuro_4    ->setWordWrap(true);
-    this->ui->upgradeTextNeuro_5    ->setWordWrap(true);
 
 
     //this->ui->upgradeText->setWordWrap(true);

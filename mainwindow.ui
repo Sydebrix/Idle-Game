@@ -1580,6 +1580,12 @@ font: 19pt &quot;Century Gothic&quot;;</string>
        </item>
        <item>
         <widget class="QPushButton" name="pushButtonLoc">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -1602,6 +1608,12 @@ font: 19pt &quot;Century Gothic&quot;;</string>
        </item>
        <item>
         <widget class="QFrame" name="frame_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -1611,6 +1623,12 @@ font: 19pt &quot;Century Gothic&quot;;</string>
          <layout class="QHBoxLayout" name="horizontalLayout_13">
           <item>
            <widget class="QFrame" name="frame_4">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
@@ -1620,6 +1638,12 @@ font: 19pt &quot;Century Gothic&quot;;</string>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
               <widget class="QLabel" name="labelTitleLoCpS">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
@@ -1639,6 +1663,12 @@ font: 19pt &quot;Century Gothic&quot;;</string>
              </item>
              <item>
               <widget class="QLabel" name="labelLoCpS">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
@@ -1658,6 +1688,12 @@ font: 19pt &quot;Century Gothic&quot;;</string>
           </item>
           <item>
            <widget class="QFrame" name="frame_5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
@@ -1667,6 +1703,12 @@ font: 19pt &quot;Century Gothic&quot;;</string>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
               <widget class="QLabel" name="labelTitleLoCpS_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
@@ -1686,6 +1728,12 @@ font: 19pt &quot;Century Gothic&quot;;</string>
              </item>
              <item>
               <widget class="QLabel" name="labelLoCpS_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
@@ -1708,6 +1756,12 @@ font: 19pt &quot;Century Gothic&quot;;</string>
        </item>
        <item>
         <widget class="QLabel" name="labelTitleLoC">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <family>Century Gothic</family>
@@ -1724,6 +1778,12 @@ font: 19pt &quot;Century Gothic&quot;;</string>
        </item>
        <item>
         <widget class="QLabel" name="labelLoC">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <family>Century Gothic</family>
@@ -1731,7 +1791,7 @@ font: 19pt &quot;Century Gothic&quot;;</string>
           </font>
          </property>
          <property name="text">
-          <string>0</string>
+          <string>9500000000000000000000000</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -1765,7 +1825,7 @@ font: 19pt &quot;Century Gothic&quot;;</string>
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-53</y>
+            <y>-13642</y>
             <width>290</width>
             <height>16360</height>
            </rect>
@@ -1839,7 +1899,7 @@ border: 1px solid grey;</string>
                     <item>
                      <widget class="QLabel" name="upgradeCostCoffee_1">
                       <property name="text">
-                       <string>75,000,000,000</string>
+                       <string>9,500,000,000,000,000,000,000,000</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -2535,7 +2595,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Hamster-Sticker</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -2678,7 +2738,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Hippo-Sticker</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -2821,7 +2881,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Sticker-Sticker</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -2964,7 +3024,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Hängeschlaufe</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -3107,7 +3167,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Glitter </string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -3250,7 +3310,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>07734</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -3393,7 +3453,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>707</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -3536,7 +3596,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>379009.09</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -3679,7 +3739,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>905573.909</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -3822,7 +3882,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>5318008</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -3965,7 +4025,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>RAM Update 1</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -4108,7 +4168,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>RAM Update 2</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -4251,7 +4311,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Kopfhörer</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -4394,7 +4454,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Steckleiste</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -4537,7 +4597,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Display</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -4680,7 +4740,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Speicherkarte</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -4823,7 +4883,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Natives Linux</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -4966,7 +5026,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Wechsel zurück zu Android</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -5109,7 +5169,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Motivierende Musik</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -5252,7 +5312,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Akku-Pack</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -5395,7 +5455,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Stylus</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -5538,7 +5598,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Putztuch</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -5681,7 +5741,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Ständer</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -5824,7 +5884,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Netflix App</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -5967,7 +6027,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>10 Akkupacks</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -6110,7 +6170,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Externe Maus</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -6253,7 +6313,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Externe Tastatur</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -6396,7 +6456,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Aufkleber der sich über Apple lustig macht</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -6539,7 +6599,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Externe Grafikkarte</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -6682,7 +6742,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Klebeband über der Webcam</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -6825,7 +6885,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Mikrofon und Kamera</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -6968,7 +7028,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>3D Monitor</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -7111,7 +7171,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Seitenfenster im Case</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -7254,7 +7314,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>VR Brille</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -7397,7 +7457,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Stickstoffkühlung</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -7540,7 +7600,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Crysis-Test</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -7683,7 +7743,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Klemmbretter für die Mitarbeiter</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -7826,7 +7886,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Pizza für die Mitarbeiter </string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -7969,7 +8029,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Kraftwerk</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -8112,7 +8172,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Rechenzentrum in der Arktis</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -8255,7 +8315,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Fedora</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -8398,7 +8458,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Luftschlitze</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -8541,7 +8601,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Totale Vernetzung</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -8684,7 +8744,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Unsterblichkeit</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -8827,7 +8887,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Ein ziemlich langer Titel!</string>
+                    <string>Weltherrschaft</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
