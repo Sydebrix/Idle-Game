@@ -31,8 +31,15 @@ class MainWindow : public QMainWindow
         double          clpClick;
         double          clpCollected;
         double          globalMulti;
-        double          clpPercent;
+        double          clpClickPercent;
         double          clpClickCoffee;
+        double          codeLines;
+
+        void            buyHardware(int h_id);
+        void            updateClpClickLabel();
+        void            updateClpSecLabel();
+        void            updateHardwareToolTip(int h_id);
+
 
 
         struct struct_hardware {
@@ -43,13 +50,12 @@ class MainWindow : public QMainWindow
             double  baseCost;
             double  cost;
             double  costMulti;
-            double  baseLOCpS;
-            double  LOCpS;
+            double  h_baseClpSec;
+            double  h_clpSec;
 
             bool    access;
 
-            void    buy();
-        } hardware[10] =  {     { 0, 0,           15,           15, COSTMULTI,       1,       1, false},
+        }   hardware[10] =  {   { 0, 0,           15,           15,      1.15,       0,       1, false},
                                 { 1, 0,          100,          100, COSTMULTI,       1,       1, false},
                                 { 2, 0,         1100,         1100, COSTMULTI,       8,       8, false},
                                 { 3, 0,        12000,        12000, COSTMULTI,      47,      47, false},
@@ -66,15 +72,14 @@ class MainWindow : public QMainWindow
 
             double  cost;
             double  clpSec;
-            double  clpClick;
+            double  clpClickPercent;
             double  multi;
-            void    buy();
 
-        }   u_coffee[5]     = { { 1,       100, 0.5, 0, 2,},
-                                { 2,       500, 0.5, 0, 2,},
-                                { 3,    100000, 0.5, 0, 2,},
-                                { 4,  10000000, 0.5, 0, 2,},
-                                { 5, 100000000, 0.5, 0, 2,}};
+        }   u_coffee[5]     = { { 0,       100, 0,      0, 2},
+                                { 1,       500, 0,  0.005, 4},
+                                { 2,    100000, 0,  0.003, 6},
+                                { 3,  10000000, 0,  0.002, 8},
+                                { 4, 100000000, 0,  0.001, 10}};
 
         struct struct_upgrade {
 
@@ -85,65 +90,65 @@ class MainWindow : public QMainWindow
             double  clpClick;
             double  multi;
 
-            void    buy();
-            void    setFrame();
 
-        }   u_tama[5]       = { { 1,                    1000,     0, 0, 2},
-                                { 2,                    5000,     0, 0, 2},
-                                { 3,                   50000,     0, 0, 2},
-                                { 4,                 5000000,     0, 0, 2},
-                                { 5,              5000000000,     0, 0, 2}},
+        }   u_tama[5]       = { { 0,                     1000,    0, 0, 2},
+                                { 1,                     5000,    0, 0, 4},
+                                { 2,                    50000,    0, 0, 6},
+                                { 3,                   500000,    0, 0, 8},
+                                { 4,                 50000000,    0, 0, 10}},
 
-            u_calc[5]       = { { 1,                    13000,    0, 0, 2},
-                                { 2,                    65000,    0, 0, 2},
-                                { 3,                   650000,    0, 0, 2},
-                                { 4,                 65000000,    0, 0, 2},
-                                { 5,              65000000000,    0, 0, 2}},
+            u_calc[5]       = { { 0,                     13000,   0, 0, 2},
+                                { 1,                     65000,   0, 0, 4},
+                                { 2,                    650000,   0, 0, 6},
+                                { 3,                   6500000,   0, 0, 8},
+                                { 4,                 650000000,   0, 0, 10}},
 
-            u_arduino[5]    = { { 1,                   150000,    0, 0, 2},
-                                { 2,                   750000,    0, 0, 2},
-                                { 3,                  7500000,    0, 0, 2},
-                                { 4,                750000000,    0, 0, 2},
-                                { 5,             750000000000,    0, 0, 2}},
+            u_arduino[5]    = { { 0,                    150000,   0, 0, 2},
+                                { 1,                    750000,   0, 0, 4},
+                                { 2,                   7500000,   0, 0, 6},
+                                { 3,                  75000000,   0, 0, 8},
+                                { 4,                7500000000,   0, 0, 10}},
 
-            u_smart[5]      = { { 1,                  1800000,    0, 0, 2},
-                                { 2,                  9000000,    0, 0, 2},
-                                { 3,                 90000000,    0, 0, 2},
-                                { 4,               9000000000,    0, 0, 2},
-                                { 5,            9000000000000,    0, 0, 2}},
+            u_smart[5]      = { { 0,                   1800000,   0, 0, 2},
+                                { 1,                   9000000,   0, 0, 4},
+                                { 2,                  90000000,   0, 0, 6},
+                                { 3,                 900000000,   0, 0, 8},
+                                { 4,               90000000000,   0, 0, 10}},
 
-            u_tablet[5]     = { { 1,              62000000000,    0, 0, 2},
-                                { 2,             310000000000,    0, 0, 2},
-                                { 3,            3100000000000,    0, 0, 2},
-                                { 4,          310000000000000,    0, 0, 2},
-                                { 5,       310000000000000000,    0, 0, 2}},
+            u_tablet[5]     = { { 0,               62000000000,   0, 0, 2},
+                                { 1,              310000000000,   0, 0, 4},
+                                { 2,             3100000000000,   0, 0, 6},
+                                { 3,            31000000000000,   0, 0, 8},
+                                { 4,          3100000000000000,   0, 0, 10}},
 
-            u_note[5]       = { { 1,             870000000000,    0, 0, 2},
-                                { 2,            4350000000000,    0, 0, 2},
-                                { 3,           43500000000000,    0, 0, 2},
-                                { 4,         4350000000000000,    0, 0, 2},
-                                { 5,      4350000000000000000,    0, 0, 2}},
+            u_note[5]       = { { 0,              870000000000,   0, 0, 2},
+                                { 1,             4350000000000,   0, 0, 4},
+                                { 2,            43500000000000,   0, 0, 6},
+                                { 3,           435000000000000,   0, 0, 8},
+                                { 4,         43500000000000000,   0, 0, 10}},
 
-            u_pc[5]         = { { 1,        12000000000000000,    0, 0, 2},
-                                { 2,        60000000000000000,    0, 0, 2},
-                                { 3,       600000000000000000,    0, 0, 2},
-                                { 4,     60000000000000000000.0,  0, 0, 2},
-                                { 5,  60000000000000000000000.0,  0, 0, 2}},
+            u_pc[5]         = { { 0,         12000000000000000,   0, 0, 2},
+                                { 1,         60000000000000000,   0, 0, 4},
+                                { 2,        600000000000000000,   0, 0, 6},
+                                { 3,       6000000000000000000.0, 0, 0, 8},
+                                { 4,     600000000000000000000.0, 0, 0, 10}},
 
-            u_codeinc[5]    = { { 1,        150000000000000000.0, 0, 0, 2},
-                                { 2,        750000000000000000.0, 0, 0, 2},
-                                { 3,       7500000000000000000.0, 0, 0, 2},
-                                { 4,     750000000000000000000.0, 0, 0, 2},
-                                { 5,  750000000000000000000000.0, 0, 0, 2}},
+            u_codeinc[5]    = { { 0,        150000000000000000.0, 0, 0, 2},
+                                { 1,        750000000000000000.0, 0, 0, 4},
+                                { 2,       7500000000000000000.0, 0, 0, 6},
+                                { 3,      75000000000000000000.0, 0, 0, 8},
+                                { 4,    7500000000000000000000.0, 0, 0, 10}},
 
-            u_neuro[5]      = { { 1,       1900000000000000000.0, 0, 0, 2},
-                                { 2,       9500000000000000000.0, 0, 0, 2},
-                                { 3,      95000000000000000000.0, 0, 0, 2},
-                                { 4,    9500000000000000000000.0, 0, 0, 2},
-                                { 5, 9500000000000000000000000.0, 0, 0, 2}};
+            u_neuro[5]      = { { 0,       1900000000000000000.0, 0, 0, 2},
+                                { 1,       9500000000000000000.0, 0, 0, 4},
+                                { 2,      95000000000000000000.0, 0, 0, 6},
+                                { 3,     950000000000000000000.0, 0, 0, 8},
+                                { 4,   95000000000000000000000.0, 0, 0, 10}};
 
+            bool            buyUpgrade(int h_id, struct struct_upgrade *u_ptr);
+            bool            buyUpgradeCoffee(int u_id, struct struct_upgradeCoffee *u_ptr);
 
-
+    // Slots für alle Knöpfe
     private slots:
 
         void on_buyHardware_0_clicked();
@@ -168,9 +173,109 @@ class MainWindow : public QMainWindow
 
         void on_pushButtonLoc_clicked();
 
+        void on_buyUpgradeCoffee_1_clicked();
+
+        void on_buyUpgradeCoffee_2_clicked();
+
+        void on_buyUpgradeCoffee_3_clicked();
+
+        void on_buyUpgradeCoffee_4_clicked();
+
+        void on_buyUpgradeCoffee_5_clicked();
+
+        void on_buyUpgradeTama_1_clicked();
+
+        void on_buyUpgradeTama_2_clicked();
+
+        void on_buyUpgradeTama_3_clicked();
+
+        void on_buyUpgradeTama_4_clicked();
+
+        void on_buyUpgradeTama_5_clicked();
+
+        void on_buyUpgradeCalc_1_clicked();
+
+        void on_buyUpgradeCalc_2_clicked();
+
+        void on_buyUpgradeCalc_3_clicked();
+
+        void on_buyUpgradeCalc_4_clicked();
+
+        void on_buyUpgradeCalc_5_clicked();
+
+        void on_buyUpgradeArduino_1_clicked();
+
+        void on_buyUpgradeArduino_2_clicked();
+
+        void on_buyUpgradeArduino_3_clicked();
+
+        void on_buyUpgradeArduino_4_clicked();
+
+        void on_buyUpgradeArduino_5_clicked();
+
+        void on_buyUpgradeSmart_1_clicked();
+
+        void on_buyUpgradeSmart_2_clicked();
+
+        void on_buyUpgradeSmart_3_clicked();
+
+        void on_buyUpgradeSmart_4_clicked();
+
+        void on_buyUpgradeSmart_5_clicked();
+
+        void on_buyUpgradeTablet_1_clicked();
+
+        void on_buyUpgradeTablet_2_clicked();
+
+        void on_buyUpgradeTablet_3_clicked();
+
+        void on_buyUpgradeTablet_4_clicked();
+
+        void on_buyUpgradeTablet_5_clicked();
+
+        void on_buyUpgradeNote_1_clicked();
+
+        void on_buyUpgradeNote_2_clicked();
+
+        void on_buyUpgradeNote_3_clicked();
+
+        void on_buyUpgradeNote_4_clicked();
+
+        void on_buyUpgradeNote_5_clicked();
+
+        void on_buyUpgradePc_1_clicked();
+
+        void on_buyUpgradePc_2_clicked();
+
+        void on_buyUpgradePc_3_clicked();
+
+        void on_buyUpgradePc_4_clicked();
+
+        void on_buyUpgradePc_5_clicked();
+
+        void on_buyUpgradeCodeInc_1_clicked();
+
+        void on_buyUpgradeCodeInc_2_clicked();
+
+        void on_buyUpgradeCodeInc_3_clicked();
+
+        void on_buyUpgradeCodeInc_4_clicked();
+
+        void on_buyUpgradeCodeInc_5_clicked();
+
+        void on_buyUpgradeNeuro_1_clicked();
+
+        void on_buyUpgradeNeuro_2_clicked();
+
+        void on_buyUpgradeNeuro_3_clicked();
+
+        void on_buyUpgradeNeuro_4_clicked();
+
+        void on_buyUpgradeNeuro_5_clicked();
+
+
 private:
         Ui::MainWindow  *ui;
-        double           codeLines;
 };
 
 
