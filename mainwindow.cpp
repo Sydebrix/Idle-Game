@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QElapsedTimer>
 #include <QTimer>
+#include <QtGlobal>
+#include <QDateTime>
 #define COSTMULTI 1.12
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -9,13 +11,18 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    this->connect(this->ui->pushButtonLoc, SIGNAL(clicked()), this,SLOT(on_pushButton_clicked()));
+/*
     codeLines               = 0;
     clpClick                = 1.0;
     clpClickCoffee          = 1;
     clpSec                  = 0;
     clpClickPercent         = 0;
+*/
+    QTime time = QTime::currentTime();
+    qsrand((uint)time.msec());
+
+    jokeCounter             = qrand() % (sizeof(jokes)/sizeof(jokes[0]));
+
 
     this->ui->labelLoCpClick->setText(QLocale(QLocale::English).toString(clpClickPercent*clpSec+clpClick, 'f', 0));
 
@@ -179,7 +186,7 @@ MainWindow::MainWindow(QWidget *parent) :
     updateHardwareToolTip(8);
     updateHardwareToolTip(9);
 
-    QString *ptr_toolTip  = new QString("Erhöht die Produktion des Gebäudes um den Faktor ");
+    QString *ptr_toolTip  = new QString("Erhöht die Produktion der Hardware um den Faktor ");
     QString *ptr_toolTip2 = new QString(". Außerdem erhälst du jetzt pro Klick +");
     QString *ptr_toolTip3 = new QString("% von deinen CL pro Sekunde.");
 
@@ -257,7 +264,7 @@ MainWindow::MainWindow(QWidget *parent) :
     delete ptr_toolTip3;
     }
 
-    // Versteckt die Upgrades und die meisten Gebäude für den Anfang des Spiels
+    // Versteckt die Upgrades und die meisten Gebäude am Anfang des Spiels, um gewisse Freischaltmechanik zu erreichen
     {
     this->ui->hardwareFrame_1       ->hide();
     this->ui->hardwareFrame_2       ->hide();
@@ -339,22 +346,19 @@ MainWindow::~MainWindow()
   delete ui;
 }
 
+// Event dass die neu gewonnen CL berechnet und das Label aktualisiert
 void MainWindow::paintEvent(QPaintEvent *){
 
     tempTime = elapsedTime.elapsed();
     elapsedTime.restart();
     codeLines += tempTime * clpSec / 1000;
-
-    QString tempLoC = QLocale(QLocale::English).toString(codeLines, 'f', 0);
-
-    this->ui->labelLoC->setText(tempLoC);
+    this->ui->labelLoC->setText(QLocale(QLocale::English).toString(codeLines, 'f', 0));
 }
 
-
+// Button für das Generieren des Codes
 void MainWindow::on_pushButtonLoc_clicked()
 {
     codeLines += clpClick;
-    //this->ui->labelLoC->;
 }
 
 // Hauptfunktion für den Hardware-Kauf
@@ -380,6 +384,7 @@ void MainWindow::buyHardware(int h_id){
                     if (hardware[h_id].counter == 1){
                         this->ui->hardwareFrame_1->show();
                         this->ui->upgradeFrameCoffee_1->show();
+                        this->ui->labelHeadline->setText("News: Eilmeldung! Leider müssen wir unseren Bericht über den umgefallenen Sack Reis unterbrechen, da sich ein Programmierer aus Bremen scheinbar eine Tasse Kaffee aufgesetzt hat!");
                     }
             break;
 
@@ -388,6 +393,7 @@ void MainWindow::buyHardware(int h_id){
                     if (hardware[h_id].counter == 1){
                         this->ui->hardwareFrame_2->show();
                         this->ui->upgradeFrameTama_1->show();
+                        this->ui->labelHeadline->setText("News: Nachdem sich My-Little-Pony unter Computer-versierten Erwachsenen eine immense Fanbase aufgebaut hat, scheint der 90er Hit „Tamagochis“ das nächste Ziel der sogenannten „Bronies“ zu sein.");
                     }
             break;
 
@@ -396,6 +402,7 @@ void MainWindow::buyHardware(int h_id){
                     if (hardware[h_id].counter == 1){
                         this->ui->hardwareFrame_3->show();
                         this->ui->upgradeFrameCalc_1->show();
+                        this->ui->labelHeadline->setText("News: Aktien für Taschenrechner hoch im Kurs: Statistisches Bundesamt veröffentlicht Statistik, nach der der hohe Bedarf an Mathematik noch mindestens 25 Jahre anhält. Forscher suchen schon heute nach alternativen die weniger kompliziert und langweilig sind. ");
                     }
             break;
 
@@ -404,6 +411,7 @@ void MainWindow::buyHardware(int h_id){
                     if (hardware[h_id].counter == 1){
                         this->ui->hardwareFrame_4->show();
                         this->ui->upgradeFrameArduino_1->show();
+                        this->ui->labelHeadline->setText("News: Mann stellt einen voll funktionsfähigen PC aus Arduino-Teilen fertig, auf dem erfolgreich Windows Vista installiert werden konnte. „2007 erschien mir das eine gute Idee“, sagt der heute etwas enttäuschte Hobby-Bastler.");
                     }
             break;
 
@@ -412,6 +420,7 @@ void MainWindow::buyHardware(int h_id){
                     if (hardware[h_id].counter == 1){
                         this->ui->hardwareFrame_5->show();
                         this->ui->upgradeFrameSmart_1->show();
+                        this->ui->labelHeadline->setText("News: Apple gratuliert zur Neujahrsfeier: Apple CEO Cook stellte auf der Vollversammlung die letzten Finanzdaten des Jahres dar und wünschte allen Anwesenden ein erfolgreiches Jahr 2015S.");
                     }
             break;
 
@@ -420,6 +429,7 @@ void MainWindow::buyHardware(int h_id){
                     if (hardware[h_id].counter == 1){
                         this->ui->hardwareFrame_6->show();
                         this->ui->upgradeFrameTablet_1->show();
+                        this->ui->labelHeadline->setText("++BREAKING NEWS!! MUST SEE!!++ Studie: Digitaler Klickbait wird immer schlimmer. ++BREAKING NEWS!! MUST SEE++");
                     }
             break;
 
@@ -428,6 +438,7 @@ void MainWindow::buyHardware(int h_id){
                     if (hardware[h_id].counter == 1){
                         this->ui->hardwareFrame_7->show();
                         this->ui->upgradeFrameNote_1->show();
+                        this->ui->labelHeadline->setText("News: Starbucks erschließt neue Märkte: Ab Februar 2018 soll es in allen Starbucks Filialen Ray-Ben Brillen und Apple Notebooks zum Ausleihen geben, um auch niedrigere Gesellschaftsschichten anzusprechen. Trotz der etwas fragwürdigen Strategie sind sich die Experten zumindest einig, dass der absurde Preis für einen Becher Kaffee dann endlich gerechtfertigt sei.");
                     }
             break;
 
@@ -436,6 +447,7 @@ void MainWindow::buyHardware(int h_id){
                     if (hardware[h_id].counter == 1){
                         this->ui->hardwareFrame_8->show();
                         this->ui->upgradeFramePc_1->show();
+                        this->ui->labelHeadline->setText("News: Nutzer beendet Streit: Nach Jahren der Diskussion hat der Nutzer xXPPSlayer98Xx in einem umfangreichen Foren-Post klargestellt, dass PC und Spiel-Konsole ihre eigenen Stärken haben und daher kein System besser als das andere ist. Nutzer reagierten einsichtig und die Debatten scheinen endgültig zum Erliegen gekommen zu sein. ");
                     }
             break;
 
@@ -444,6 +456,7 @@ void MainWindow::buyHardware(int h_id){
                     if (hardware[h_id].counter == 1){
                         this->ui->hardwareFrame_9->show();
                         this->ui->upgradeFrameCodeInc_1->show();
+                        this->ui->labelHeadline->setText("News: Neuer globaler Player betritt den Markt: Ein unbekannter Spieler hat den hart umkämpften Markt der Rechenzentren betreten und versucht alt-eingesessene Unternehmen zu verdrängen. „Mir fällt das alles relativ leicht, da ich im Grunde nur am PC sitze und imaginären Zahlen beim größer-werden zuschaue“ kommentierte der unbekannte Spieler.");
                     }
             break;
 
@@ -451,6 +464,7 @@ void MainWindow::buyHardware(int h_id){
                     this->ui->hardwareCount_9->setNum(hardware[h_id].counter);
                     if (hardware[h_id].counter == 1){
                         this->ui->upgradeFrameNeuro_1->show();
+                        this->ui->labelHeadline->setText("News: Neuro-Informatik auf dem Vormarsch: Während deutsche Technologie-Konzerne damit hadern die neuen Möglichkeiten zu nutzen, wurden schon zwei pornografische Neuro-Produktionen einen Oskar nominiert. Kritiker sprechen von einer „spürbaren Tiefe“ und einem „gewissen Mitten-Drin-Gefühl“. ");
                     }
             break;
         }
@@ -471,7 +485,7 @@ bool MainWindow::buyUpgrade(int h_id, struct struct_upgrade *u_ptr){
     if (u_ptr->cost <= codeLines){
 
         // Preis abziehen
-        codeLines = codeLines - u_ptr->cost;
+        codeLines -= u_ptr->cost;
 
         // Neue Basis CL pro Sekunde der jeweiligen Hardware berechnen
         hardware[h_id].h_baseClpSec = hardware[h_id].h_baseClpSec * u_ptr->multi;
@@ -480,6 +494,11 @@ bool MainWindow::buyUpgrade(int h_id, struct struct_upgrade *u_ptr){
         updateClpSecLabel();
         updateClpClickLabel();
         updateHardwareToolTip(h_id);
+
+        // Witz ausgeben
+        if ( (u_ptr->id == 1) || (u_ptr->id == 3) || (u_ptr->id == 4)){
+            printJoke();
+        }
 
         // Erfolgreiche Transaktion zurückgeben
         return true;
@@ -511,6 +530,11 @@ bool MainWindow::buyUpgradeCoffee(int u_id, struct struct_upgradeCoffee *u_ptr){
         updateClpClickLabel();
         updateHardwareToolTip(0);
 
+        // Witz ausgeben
+        if ( (u_ptr->id == 1) || (u_ptr->id == 3) || (u_ptr->id == 4)){
+            printJoke();
+        }
+
         // Erfolgreiche Transaktion zurückgeben
         return true;
 
@@ -522,8 +546,55 @@ bool MainWindow::buyUpgradeCoffee(int u_id, struct struct_upgradeCoffee *u_ptr){
 
 }
 
-// Buttons für Hardware
+// Aktualisiert die Klickstärke und das entsprechende Label
+void MainWindow::updateClpClickLabel(){
+    clpClick = (clpClickCoffee * hardware[0].counter) + (clpSec * clpClickPercent);
+    if (clpClickCoffee != 0.00){
+        clpClick = clpClickPercent * clpSec * hardware[0].counter + clpClick;
+    }
+    this->ui->labelLoCpClick->setText(QLocale(QLocale::English).toString(clpClick, 'f', 0));
+}
 
+// Aktualisiert die CL pro Sekunde und das entsprechende Label
+void MainWindow::updateClpSecLabel(){
+    clpSec = 0;
+    for (int i = 0; i < 10; i++){
+        clpSec = hardware[i].counter * hardware[i].h_baseClpSec + clpSec;
+    }
+    this->ui->labelLoCpS->setText(QLocale(QLocale::English).toString(clpSec, 'f', 0));
+}
+
+// Aktualisiert den ToolTip einer angegebenen Hardware
+void MainWindow::updateHardwareToolTip(int h_id){
+
+    QString tempToolTip = "Diese Hardware erzeugt ";
+    QString tempToolTip2 = "CL pro Sekunde";
+
+    switch (h_id){
+        case 0:this->ui->hardwareFrame_0->setToolTip("Ein Becher Kaffee gibt +" + QLocale(QLocale::English).toString(clpClickCoffee + (clpSec * clpClickPercent),  'f', 0) + " pro Klick.");break;
+        case 1:this->ui->hardwareFrame_1->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[1].h_baseClpSec, 'f', 0) + tempToolTip2); break;
+        case 2:this->ui->hardwareFrame_2->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[2].h_baseClpSec, 'f', 0) + tempToolTip2); break;
+        case 3:this->ui->hardwareFrame_3->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[3].h_baseClpSec, 'f', 0) + tempToolTip2); break;
+        case 4:this->ui->hardwareFrame_4->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[4].h_baseClpSec, 'f', 0) + tempToolTip2); break;
+        case 5:this->ui->hardwareFrame_5->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[5].h_baseClpSec, 'f', 0) + tempToolTip2); break;
+        case 6:this->ui->hardwareFrame_6->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[6].h_baseClpSec, 'f', 0) + tempToolTip2); break;
+        case 7:this->ui->hardwareFrame_7->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[7].h_baseClpSec, 'f', 0) + tempToolTip2); break;
+        case 8:this->ui->hardwareFrame_8->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[8].h_baseClpSec, 'f', 0) + tempToolTip2); break;
+        case 9:this->ui->hardwareFrame_9->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[9].h_baseClpSec, 'f', 0) + tempToolTip2); break;
+    }
+}
+
+// Gibt einen Witz aus
+void MainWindow::printJoke(){
+    // Sollte der Counter die Liste abgearbeitet haben fängt er von vorne an
+    if (jokeCounter == (sizeof(jokes)/sizeof(jokes[0]))) jokeCounter = 0;
+
+    this->ui->labelHeadline->setText(jokes[jokeCounter]);
+
+    jokeCounter++;
+}
+
+// Buttons für Hardware
 void MainWindow::on_buyHardware_0_clicked()
 {
     buyHardware(0);
@@ -566,7 +637,6 @@ void MainWindow::on_buyHardware_9_clicked()
 }
 
 // Buttons für Upgrades
-
 void MainWindow::on_buyUpgradeCoffee_1_clicked()
 {
     if ( buyUpgradeCoffee(0, &u_coffee[0]) ){
@@ -1008,37 +1078,18 @@ void MainWindow::on_buyUpgradeNeuro_5_clicked()
     }
 }
 
-void MainWindow::updateClpClickLabel(){
-    clpClick = (clpClickCoffee * hardware[0].counter) + (clpSec * clpClickPercent);
-    if (clpClickCoffee != 0.00){
-        clpClick = clpClickPercent * clpSec * hardware[0].counter + clpClick;
-    }
-    this->ui->labelLoCpClick->setText(QLocale(QLocale::English).toString(clpClick, 'f', 0));
+void MainWindow::on_actionCL_pro_Sekunde_triggered()
+{
+    if (clpSec == 0 ) clpSec = 1000000;
+    clpSec *= 1000000;
 }
 
-void MainWindow::updateClpSecLabel(){
-    clpSec = 0;
-    for (int i = 0; i < 10; i++){
-        clpSec = hardware[i].counter * hardware[i].h_baseClpSec + clpSec;
-    }
-    this->ui->labelLoCpS->setText(QLocale(QLocale::English).toString(clpSec, 'f', 0));
+void MainWindow::on_actionCL_pro_Klick_triggered()
+{
+    clpClick *= 1000000;
 }
 
-void MainWindow::updateHardwareToolTip(int h_id){
-
-    QString tempToolTip = "Diese Hardware erzeugt ";
-    QString tempToolTip2 = "CL pro Sekunde";
-
-    switch (h_id){
-        case 0:this->ui->hardwareFrame_0->setToolTip("Das Gebäude gibt +" + QLocale(QLocale::English).toString(clpClickCoffee + (clpSec * clpClickPercent),  'f', 0) + " pro Klick.");break;
-        case 1:this->ui->hardwareFrame_1->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[1].h_baseClpSec, 'f', 0) + tempToolTip2); break;
-        case 2:this->ui->hardwareFrame_2->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[2].h_baseClpSec, 'f', 0) + tempToolTip2); break;
-        case 3:this->ui->hardwareFrame_3->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[3].h_baseClpSec, 'f', 0) + tempToolTip2); break;
-        case 4:this->ui->hardwareFrame_4->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[4].h_baseClpSec, 'f', 0) + tempToolTip2); break;
-        case 5:this->ui->hardwareFrame_5->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[5].h_baseClpSec, 'f', 0) + tempToolTip2); break;
-        case 6:this->ui->hardwareFrame_6->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[6].h_baseClpSec, 'f', 0) + tempToolTip2); break;
-        case 7:this->ui->hardwareFrame_7->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[7].h_baseClpSec, 'f', 0) + tempToolTip2); break;
-        case 8:this->ui->hardwareFrame_8->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[8].h_baseClpSec, 'f', 0) + tempToolTip2); break;
-        case 9:this->ui->hardwareFrame_9->setToolTip(tempToolTip + QLocale(QLocale::English).toString(hardware[9].h_baseClpSec, 'f', 0) + tempToolTip2); break;
-    }
+void MainWindow::on_actionCL_auf_0_setzen_triggered()
+{
+    codeLines = 0;
 }
