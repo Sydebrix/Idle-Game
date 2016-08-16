@@ -47,7 +47,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-149</y>
             <width>501</width>
             <height>952</height>
            </rect>
@@ -1467,7 +1467,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Neuronales Netzwerk</string>
+                    <string>Neuro-Informatik</string>
                    </property>
                   </widget>
                  </item>
@@ -1570,6 +1570,11 @@ font: 19pt &quot;Century Gothic&quot;;</string>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <widget class="QLabel" name="labelHeadline">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Hier könnte Ihre Werbung stehen!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
@@ -1828,7 +1833,7 @@ font: 19pt &quot;Century Gothic&quot;;</string>
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-2520</y>
+            <y>-1873</y>
             <width>281</width>
             <height>16476</height>
            </rect>
@@ -2256,7 +2261,7 @@ font: 19pt &quot;Century Gothic&quot;;</string>
 </string>
                 </property>
                 <property name="text">
-                 <string>*Akustische Gitarre im Hintergrund* Manchmal ist eine heiße Tasse Kenia-Mischung mit einem Schuss Amaretto genau das, was ein Mann braucht um den Tag zu überstehen. Mit seinem weichen Aroma und dem milden Geschmack ist Kaffeemaschinen-Kaffee einfach unvergleichlich. Unvergleichlich wie ein Sonnenaufgang in Arizona oder ein Tau-benetzter Wachholder-Strauch. Wie ein Schauer an einem trockenen Nachmittag oder vielleicht der Kuss deiner Lieblingstante.</string>
+                 <string>*Akustische Gitarre im Hintergrund* Manchmal ist eine heiße Tasse Kenia-Mischung mit einem Schuss Amaretto genau das, was man braucht um den Tag zu überstehen. Mit seinem weichen Aroma und dem milden Geschmack ist Kaffeemaschinen-Kaffee einfach unvergleichlich. Unvergleichlich wie ein Sonnenaufgang in Arizona oder ein Tau-benetzter Wachholder-Strauch. Wie ein Schauer an einem trockenen Nachmittag oder vielleicht der Kuss deiner Lieblingstante.</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -2834,7 +2839,7 @@ font: 19pt &quot;Century Gothic&quot;;</string>
 </string>
                 </property>
                 <property name="text">
-                 <string>Das Schwergewicht unter den Stickern. Du musstest Shelly aus dem Kindergarten ganze XXX CL dafür geben.</string>
+                 <string>Das Schwergewicht unter den Stickern. Du musstest Shelly aus dem Kindergarten echt viele Code-Lines dafür geben. Was sie damit wohl macht?</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -4043,7 +4048,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>RAM Update 1: 4MB</string>
+                    <string>4MB RAM</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -4186,7 +4191,7 @@ border: 1px solid grey;</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string>RAM Update 2: 300MB</string>
+                    <string>300MB RAM</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -9879,28 +9884,13 @@ font: 19pt &quot;Century Gothic&quot;;</string>
    </property>
    <widget class="QMenu" name="menu_Datei">
     <property name="title">
-     <string>&amp;Datei</string>
+     <string>Cheats</string>
     </property>
-    <addaction name="action_Laden"/>
-    <addaction name="action_Speichern"/>
+    <addaction name="actionCL_pro_Sekunde"/>
+    <addaction name="actionCL_pro_Klick"/>
+    <addaction name="actionCL_auf_0_setzen"/>
    </widget>
    <addaction name="menu_Datei"/>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="action_Laden"/>
-   <addaction name="action_Speichern"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_Laden">
@@ -9917,6 +9907,21 @@ font: 19pt &quot;Century Gothic&quot;;</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionCL_pro_Sekunde">
+   <property name="text">
+    <string>CL pro Sekunde</string>
+   </property>
+  </action>
+  <action name="actionCL_pro_Klick">
+   <property name="text">
+    <string>CL pro Klick</string>
+   </property>
+  </action>
+  <action name="actionCL_auf_0_setzen">
+   <property name="text">
+    <string>CL auf 0 setzen</string>
    </property>
   </action>
  </widget>
