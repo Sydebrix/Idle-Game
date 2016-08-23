@@ -1,3 +1,16 @@
+/* Grundlagen der Informatik II, SS 16
+
+    Projekt:            Idle-Game
+    Autor: 				Robert Schock
+    Matrikelnummer: 	4229891
+    Datum: 				23.08.2016
+
+Dies ist die mainwindow.h für das Spiel 'Infinite Coder' dass die Initialisierungswerte
+für den Spielablauf und das Balancing enthält. Zudem wurden hier alle Käufe deklariert
+sowie implementiert, eine ausführliche Begründung findet sich in der angehängten
+Dokumentation im PDF-Format.
+*/
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -7,6 +20,9 @@
 #include <QWidget>
 #include <QFrame>
 #include <QString>
+
+// Entscheidet wie schnell der Preis für Hardware steigt
+// Essentielles Balancing-Element
 #define COSTMULTI 1.12
 
 namespace Ui {
@@ -21,36 +37,39 @@ class MainWindow : public QMainWindow
         explicit    MainWindow(QWidget *parent = 0);
                     ~MainWindow();
 
-        void paintEvent(QPaintEvent *);
-        QElapsedTimer   elapsedTime;
+        void paintEvent(QPaintEvent *);                     // Event zur Selbstaktualisierung der Anzeige von gesammelten CL
 
-        int             tempTime;
-        int             jokeCounter;
+        QElapsedTimer   elapsedTime;                        // Zeit die zwischen zwei Berechnungen verstrichen ist
 
-        double          clpSec          = 0;
-        double          clpClick        = 1;
-        double          clpClickPercent = 0.00;
-        double          clpClickCoffee  = 1;
-        double          codeLines       = 0;
+        int             tempTime;                           // Zeit die zwischen zwei Berechnungen verstrichen ist (Zwischenvariable)
+        int             jokeCounter;                        // Iterator für den Witz-Array
 
-        void            buyHardware(int h_id);
-        void            updateClpClickLabel();
-        void            updateClpSecLabel();
-        void            updateHardwareToolTip(int h_id);
-        void            printJoke();
+        // "clp" steht für CodeLinesPro/CodeLinesPer
+        double          clpSec          = 0;                // Aktuelle Code Lines pro Sekunde
+        double          clpClick        = 1;                // Aktuelle Code Lines pro Click
+        double          clpClickPercent = 0.00;             // Prozente von den CL pro Sekunde, die der Klickstärke hinzugefügt werden (Nach Upgrade)
+        double          clpClickCoffee  = 1;                // Code Lines pro Click die durch Kaffee-Kauf hinzukommen
+        double          codeLines       = 0;                // Anzahl gesammelter CL
 
 
+        // h_id entspricht der Hardware ID
+        void            buyHardware(int h_id);              // Hauptfunktion für Hardwarekauf
+        void            updateClpClickLabel();              // Erneuert die CL pro Click   UND die entsprechende Anzeige
+        void            updateClpSecLabel();                // Erneuert die CL pro Sekunde UND die entsprechende Anzeige
+        void            updateHardwareToolTip(int h_id);    // Erneuert den Hardware-Tooltip (Hover-Text) nach einem Upgrade
+        void            printJoke();                        // Ausgabe des nächsten Witzes
+
+
+        // Hauptstruktur für die Hardware
         struct struct_hardware {
 
             int     id;
-            // Anzahl gekauft
-            int     counter;
-
-            double  baseCost;
-            double  cost;
-            double  costMulti;
-            double  h_baseClpSec;
-            double  h_clpSec;
+            int     counter;            // Anzahl gekaufter Einheiten
+            double  baseCost;           // Basis-Kosten
+            double  cost;               // Aktuelle Kosten
+            double  costMulti;          // Multiplikator für ansteigende Kosten
+            double  h_baseClpSec;       // Basis CL pro Sekunde
+            double  h_clpSec;           // Aktuelle CL pro Sekunde
 
         }           hardware[10] =  {   { 0, 0,           15,           15,      1.15,        0,       1}, // Kaffee
                                         { 1, 0,          100,          100, COSTMULTI,        1,       1}, // Tamagochi
@@ -63,14 +82,14 @@ class MainWindow : public QMainWindow
                                         { 8, 0,  75000000000,  75000000000, COSTMULTI,  2600000,  260000}, // CodeInc.
                                         { 9, 0, 100000000000, 100000000000, COSTMULTI, 16000000, 1600000}};// Neuro
 
+        // Kaffee-Upgrades nehmen eine Sonderstellung ein, deshalb eine eigene Struktur
         struct struct_upgradeCoffee {
 
             int     id;
-
             double  cost;
-            double  clpSec;
-            double  clpClickPercent;
-            double  multi;
+            double  clpSec;             // CL pro Sekunde (Nicht umgesetzt)
+            double  clpClickPercent;    // Erhöhung der Klickstärke um prozentualen Anteil von den CL pro Sekunde
+            double  multi;              // Multiplikator der Klickstärke
 
         }   u_coffee[5]     = { { 0,                     100, 0, 0,     2},
                                 { 1,                     500, 0, 0.005, 4},
@@ -84,67 +103,79 @@ class MainWindow : public QMainWindow
 
             double  cost;
             double  clpSec;
-            double  clpClick;
-            double  multi;
+            double  clpClick;           // Erhöhung der Klickstärke um absoluten Wert (Nicht umgesetzt)
+            double  multi;              // Multiplikator der CL pro Sekunde
 
 
+            // Tamagochi
         }   u_tama[5]       = { { 0,                    1000,   0, 0, 2},
                                 { 1,                    5000,   0, 0, 4},
                                 { 2,                   50000,   0, 0, 6},
                                 { 3,                  500000,   0, 0, 8},
                                 { 4,                50000000,   0, 0, 10}},
 
+            // Taschenrechner
             u_calc[5]       = { { 0,                   13000,   0, 0, 2},
                                 { 1,                   65000,   0, 0, 4},
                                 { 2,                  650000,   0, 0, 6},
                                 { 3,                 6500000,   0, 0, 8},
                                 { 4,               650000000,   0, 0, 10}},
 
+            // Arduino
             u_arduino[5]    = { { 0,                  150000,   0, 0, 2},
                                 { 1,                  750000,   0, 0, 4},
                                 { 2,                 7500000,   0, 0, 6},
                                 { 3,                75000000,   0, 0, 8},
                                 { 4,              7500000000,   0, 0, 10}},
 
+            // Smartphone
             u_smart[5]      = { { 0,                 1800000,   0, 0, 2},
                                 { 1,                 9000000,   0, 0, 4},
                                 { 2,                90000000,   0, 0, 6},
                                 { 3,               900000000,   0, 0, 8},
                                 { 4,             90000000000,   0, 0, 10}},
 
+            // Tablet
             u_tablet[5]     = { { 0,               160000000,   0, 0, 4},
                                 { 1,               780000000,   0, 0, 6},
                                 { 2,              3100000000,   0, 0, 8},
                                 { 3,             31000000000,   0, 0, 10},
                                 { 4,           3100000000000,   0, 0, 13}},
 
+            // Notebook
             u_note[5]       = { { 0,              8700000000,   0, 0, 4},
                                 { 1,              4350000000,   0, 0, 6},
                                 { 2,             43500000000,   0, 0, 8},
                                 { 3,            435000000000,   0, 0, 10},
                                 { 4,          43500000000000,   0, 0, 15}},
 
+            // Desktop
             u_pc[5]         = { { 0,             12000000000,   0, 0, 4},
                                 { 1,             60000000000,   0, 0, 6},
                                 { 2,            600000000000,   0, 0, 8},
                                 { 3,           6000000000000.0, 0, 0, 10},
                                 { 4,         600000000000000.0, 0, 0, 20}},
 
+            // Rechenzentrum
             u_codeinc[5]    = { { 0,            150000000000.0, 0, 0, 4},
                                 { 1,            750000000000.0, 0, 0, 6},
                                 { 2,           7500000000000.0, 0, 0, 8},
                                 { 3,          75000000000000.0, 0, 0, 20},
                                 { 4,        7500000000000000.0, 0, 0, 50}},
 
+            // Neuro-Informatik
             u_neuro[5]      = { { 0,           1900000000000.0, 0, 0, 4},
                                 { 1,          95000000000000.0, 0, 0, 6},
                                 { 2,         950000000000000.0, 0, 0, 8},
                                 { 3,        9500000000000000.0, 0, 0, 30},
                                 { 4,      950000000000000000.0, 0, 0, 100}};
 
-            bool            buyUpgrade(int h_id, struct struct_upgrade *u_ptr);
+            // Funktionen für Upgrade-Kauf
+            // Mussten nach den structs deklariert werden
+            bool            buyUpgrade      (int h_id, struct struct_upgrade       *u_ptr);
             bool            buyUpgradeCoffee(int u_id, struct struct_upgradeCoffee *u_ptr);
 
+            // Witze
             QString jokes[39] ={{"How many programmers do you need to change a lightbulb?\n– 0. It's a hardware problem."},
                                 {"UNIX is the OS of the future. And has been for 30 years."},
                                 {"What's in the water shouting F1?\nA programmer who can't swim."},
@@ -188,6 +219,7 @@ class MainWindow : public QMainWindow
     // Slots für alle Knöpfe
     private slots:
 
+        // Hardware
         void on_buyHardware_0_clicked();
 
         void on_buyHardware_1_clicked();
@@ -208,8 +240,10 @@ class MainWindow : public QMainWindow
 
         void on_buyHardware_9_clicked();
 
+        // CODE!-Button
         void on_pushButtonLoc_clicked();
 
+        // Upgrades
         void on_buyUpgradeCoffee_1_clicked();
 
         void on_buyUpgradeCoffee_2_clicked();
@@ -310,6 +344,7 @@ class MainWindow : public QMainWindow
 
         void on_buyUpgradeNeuro_5_clicked();
 
+        // Cheats
         void on_actionCL_pro_Sekunde_triggered();
 
         void on_actionCL_pro_Klick_triggered();

@@ -1,32 +1,38 @@
+/* Grundlagen der Informatik II, SS 16
+
+    Projekt:            Idle-Game
+    Autor: 				Robert Schock
+    Matrikelnummer: 	4229891
+    Datum: 				23.08.2016
+
+Dies ist die Hauptdatei für das Spiel 'Infinite Coder' dass die gesammte Spiellogik
+sowie das Eventhandling enthält. Eine genaue Dokumentation liegt der
+Abgabe als PDF Datei bei.
+*/
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QElapsedTimer>
 #include <QTimer>
 #include <QtGlobal>
 #include <QDateTime>
-#define COSTMULTI 1.12
+
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-/*
-    codeLines               = 0;
-    clpClick                = 1.0;
-    clpClickCoffee          = 1;
-    clpSec                  = 0;
-    clpClickPercent         = 0;
-*/
-    QTime time = QTime::currentTime();
+
+    // Bestimmen des zufälligen Anfangs im Witz-Array, bei dem die Zeit als Seed verwendet wird.
+    QTime time      = QTime::currentTime();
     qsrand((uint)time.msec());
+    jokeCounter     = qrand() % (sizeof(jokes)/sizeof(jokes[0]));
 
-    jokeCounter             = qrand() % (sizeof(jokes)/sizeof(jokes[0]));
-
-
+    // Label mit aktueller Clickstärke versehen
     this->ui->labelLoCpClick->setText(QLocale(QLocale::English).toString(clpClickPercent*clpSec+clpClick, 'f', 0));
 
-    // Die Kosten in die jeweilgen Felder eintragen
+    // Die tatsächlichen Kosten in die jeweilgen Felder eintragen
     {
     this->ui->hardwareCost_0->setText(QLocale(QLocale::English).toString(hardware[0].cost, 'f', 0));
     this->ui->hardwareCost_1->setText(QLocale(QLocale::English).toString(hardware[1].cost, 'f', 0));
@@ -100,8 +106,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->upgradeCostNeuro_5    ->setText(QLocale(QLocale::English).toString(u_neuro[4].cost, 'f', 0));
     }
 
-    // setWordWrap(true)auf allen Textfeldern und ausgesuchten Titelname-Feldern setzen,
-    // da sonst der minimale Platz nicht ausreich um den gesamten Inhalt anzuzeigen
+    // setWordWrap(true) aktiviert den automatischen Textumbruch
+    // da sonst der minimale Platz teilweise nicht ausreich um den gesamten Inhalt anzuzeigen
     {
     this->ui->labelHeadline         ->setWordWrap(true);
     this->ui->upgradeNameCoffee_2   ->setWordWrap(true);
@@ -172,7 +178,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->upgradeTextNeuro_5    ->setWordWrap(true);
     }
 
-    // Erstellt korrrekte ToolTips mit variablen Faktoren
+    // Erstellt korrrekte ToolTips mit den festgesetzten Faktoren
     {
 
     updateHardwareToolTip(0);
@@ -190,6 +196,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QString *ptr_toolTip2 = new QString(". Außerdem erhälst du jetzt pro Klick +");
     QString *ptr_toolTip3 = new QString("% von deinen CL pro Sekunde.");
 
+    // Abfrage ob neben der Klickstärke auch ein CL pro Sekunde -abhängiger Bonus hinzugefügt wird
     if (u_coffee[0].clpClickPercent == 0) { this->ui->upgradeFrameCoffee_1   ->setToolTip(*ptr_toolTip + QString::number(u_coffee[0].multi) + "."); }
     else { this->ui->upgradeFrameCoffee_1   ->setToolTip(*ptr_toolTip + QString::number(u_coffee[0].multi) + *ptr_toolTip2 + QLocale(QLocale::English).toString(u_coffee[0].clpClickPercent*100, 'f', 1) + *ptr_toolTip3);}
 
@@ -335,6 +342,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     // Zähltimer für das automatische Ansteigen der CL pro Sekunde
+    // Indem start() keinen Parameter bekommt, läuft der Timer immer dann aus wenn das Programm im Idle ist
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start();
@@ -350,19 +358,23 @@ MainWindow::~MainWindow()
 void MainWindow::paintEvent(QPaintEvent *){
 
     tempTime = elapsedTime.elapsed();
-    elapsedTime.restart();
-    codeLines += tempTime * clpSec / 1000;
+    elapsedTime.restart();                  // Zwischenschritt damit die Zeit direkt weiterlaufenkann
+    codeLines += tempTime * clpSec / 1000;  // Bruchteil der Sekunde mal CL pro Sekunde
+
+    // Label-Update
     this->ui->labelLoC->setText(QLocale(QLocale::English).toString(codeLines, 'f', 0));
 }
 
 // Button für das Generieren des Codes
 void MainWindow::on_pushButtonLoc_clicked()
 {
+    // Fügt nur die CL pro Click der Gesammtmenge hinzu
     codeLines += clpClick;
 }
 
 // Hauptfunktion für den Hardware-Kauf
 void MainWindow::buyHardware(int h_id){
+
     // Wenn genug Geld da ist
     if (codeLines >= hardware[h_id].cost){
 
@@ -377,13 +389,22 @@ void MainWindow::buyHardware(int h_id){
 
         switch(h_id){
 
+                    // Erneuere die angezeigten Kosten im richtigen Feld
             case 0: this->ui->hardwareCost_0->setText(QLocale(QLocale::English).toString(hardware[h_id].cost, 'f', 0));
 
+                    // Erneuere die Nummer schon gekaufter Einheiten
                     this->ui->hardwareCount_0->setNum(hardware[h_id].counter);
 
+                    // Falls es der erstmalige Kauf ist
                     if (hardware[h_id].counter == 1){
+
+                        // Wird die nächste Hardware zum Kauf freigeschaltet
                         this->ui->hardwareFrame_1->show();
+
+                        // Die Upgrades für diese Hardware freigeschaltet
                         this->ui->upgradeFrameCoffee_1->show();
+
+                        // Sowie eine News im Headline angezeigt
                         this->ui->labelHeadline->setText("News: Eilmeldung! Leider müssen wir unseren Bericht über den umgefallenen Sack Reis unterbrechen, da sich ein Programmierer aus Bremen scheinbar eine Tasse Kaffee aufgesetzt hat!");
                     }
             break;
@@ -468,13 +489,16 @@ void MainWindow::buyHardware(int h_id){
                     }
             break;
         }
+
+    // Update aller relevanten Werte sowie Label
     updateClpSecLabel();
     updateClpClickLabel();
     updateHardwareToolTip(0);
 
 
     } else {
-        this->ui->labelHeadline->setText("Nicht genug Geld!");
+        // Wenn die Code-Lines nicht reichen wird die Warnung ausgegeben
+        this->ui->labelHeadline->setText("Nicht genug Lines of Code!");
     }
 }
 
@@ -490,12 +514,13 @@ bool MainWindow::buyUpgrade(int h_id, struct struct_upgrade *u_ptr){
         // Neue Basis CL pro Sekunde der jeweiligen Hardware berechnen
         hardware[h_id].h_baseClpSec = hardware[h_id].h_baseClpSec * u_ptr->multi;
 
-        // Neue globale CL pro Sekunde berechnen
+        // Neue globale CL pro Sekunde/Click berechnen
         updateClpSecLabel();
         updateClpClickLabel();
         updateHardwareToolTip(h_id);
 
         // Witz ausgeben
+        // Immer jeweils beim 1, 3 und 4 Upgrade
         if ( (u_ptr->id == 1) || (u_ptr->id == 3) || (u_ptr->id == 4)){
             printJoke();
         }
@@ -505,7 +530,7 @@ bool MainWindow::buyUpgrade(int h_id, struct struct_upgrade *u_ptr){
 
     } else {
         // Sonst angeben dass das Geld nicht reicht und false zurückgeben
-        this->ui->labelHeadline->setText("Nicht genug Geld!");
+        this->ui->labelHeadline->setText("Nicht genug Lines of Code!");
         return false;
     }
 
@@ -526,6 +551,7 @@ bool MainWindow::buyUpgradeCoffee(int u_id, struct struct_upgradeCoffee *u_ptr){
         // Prozente von den CL pro Sekunde, die der Klickstärke hinzugefügt werden
         clpClickPercent = clpClickPercent + u_ptr->clpClickPercent;
 
+        // Neue globale CL pro Sekunde/Click berechnen
         updateClpSecLabel();
         updateClpClickLabel();
         updateHardwareToolTip(0);
@@ -540,7 +566,7 @@ bool MainWindow::buyUpgradeCoffee(int u_id, struct struct_upgradeCoffee *u_ptr){
 
     } else {
         // Sonst angeben dass das Geld nicht reicht und false zurückgeben
-        this->ui->labelHeadline->setText("Nicht genug Geld!");
+        this->ui->labelHeadline->setText("Nicht genug Lines of Code!");
         return false;
     }
 
@@ -548,10 +574,16 @@ bool MainWindow::buyUpgradeCoffee(int u_id, struct struct_upgradeCoffee *u_ptr){
 
 // Aktualisiert die Klickstärke und das entsprechende Label
 void MainWindow::updateClpClickLabel(){
-    clpClick = (clpClickCoffee * hardware[0].counter) + (clpSec * clpClickPercent);
+
+    // Anzahl Kaffe * Klickstärke Kaffee, hier wurde eine Rechnung nachträglich entfernt!
+    clpClick = (clpClickCoffee * hardware[0].counter); //+ (clpSec * clpClickPercent);
+
+    // Falls prozentuale Boni zu addieren sind
     if (clpClickCoffee != 0.00){
         clpClick = clpClickPercent * clpSec * hardware[0].counter + clpClick;
     }
+
+    // Label-Update
     this->ui->labelLoCpClick->setText(QLocale(QLocale::English).toString(clpClick, 'f', 0));
 }
 
@@ -586,6 +618,7 @@ void MainWindow::updateHardwareToolTip(int h_id){
 
 // Gibt einen Witz aus
 void MainWindow::printJoke(){
+
     // Sollte der Counter die Liste abgearbeitet haben fängt er von vorne an
     if (jokeCounter == (sizeof(jokes)/sizeof(jokes[0]))) jokeCounter = 0;
 
@@ -636,7 +669,12 @@ void MainWindow::on_buyHardware_9_clicked()
     buyHardware(9);
 }
 
-// Buttons für Upgrades
+/*
+ *Upgrade-Kauf
+    Dabei wird das jeweils gekaufte Upgrade wieder
+    entfernt und das nächste in der Reihenfolge angezeigt.
+    Zudem wird das Bild der entsprechenden Hardware aktualisiert.
+*/
 void MainWindow::on_buyUpgradeCoffee_1_clicked()
 {
     if ( buyUpgradeCoffee(0, &u_coffee[0]) ){
@@ -1078,6 +1116,8 @@ void MainWindow::on_buyUpgradeNeuro_5_clicked()
     }
 }
 
+// Cheats die den gewollten Wert verstärken.
+// Haben keinen Einfluss auf die Anzeigen der Labels
 void MainWindow::on_actionCL_pro_Sekunde_triggered()
 {
     if (clpSec == 0 ) clpSec = 1000000;
