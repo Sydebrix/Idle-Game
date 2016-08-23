@@ -22,7 +22,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Infinte Coder</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -47,9 +47,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-149</y>
-            <width>501</width>
-            <height>952</height>
+            <y>0</y>
+            <width>520</width>
+            <height>816</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_28">
@@ -1576,7 +1576,7 @@ font: 19pt &quot;Century Gothic&quot;;</string>
           </font>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Hier könnte Ihre Werbung stehen!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Klicke auf den großen CODE!-Button!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -1833,9 +1833,9 @@ font: 19pt &quot;Century Gothic&quot;;</string>
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-1873</y>
-            <width>281</width>
-            <height>16476</height>
+            <y>0</y>
+            <width>300</width>
+            <height>16360</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -9879,7 +9879,7 @@ font: 19pt &quot;Century Gothic&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>1490</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Datei">
